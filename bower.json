@@ -1,0 +1,29 @@
+{
+  "name": "orderly-mobile",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Apaq/orderly-mobile",
+  "authors": [
+    "Michael Krog <mic@apaq.dk>"
+  ],
+  "description": "Mobile client for Orderly",
+  "main": "index.html",
+  "keywords": [
+    "orderly"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+      "ionic": "driftyco/ionic-bower#1.0.0-beta.9",
+      "angular-resource": "~1.2.20",
+      "angular-i18n": "~1.2.20",
+      "angular-translate": "~2.2.0",
+      "angular-local-storage": "0.0.5"
+  }
+}

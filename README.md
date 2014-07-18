@@ -1,4 +1,4 @@
-orderly-mobile
-==============
+Orderly Mobile Client
+=====================
 
-A mobile client for Orderly
+This project is a mobile client for Orderly.

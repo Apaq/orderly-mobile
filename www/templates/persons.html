@@ -1,0 +1,25 @@
+<ion-view title="{{currentRelation.domain.name}}" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="background-stable">
+        <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios7-search placeholder-icon"></i>
+                <input type="search" placeholder="Search">
+            </label>
+        </div>
+
+        <div class="list">
+            <a class="item" ng-repeat="person in persons | orderBy:['lastName', 'firstName']" href="#/menu/persons/{{person.id}}">
+                {{person.lastName}}, {{person.firstName}} 
+            </a>
+            
+            <!--div class="item item-divider">
+                A
+            </div-->
+
+
+    </ion-content>
+</ion-view>

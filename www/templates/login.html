@@ -1,0 +1,32 @@
+<ion-view title="Login">
+    <ion-content class="login-content-view">
+        <div class="row logo-padding">
+            <div class="col col-100" style="text-align: center">
+                <span class="logo">Orderly</span>
+            </div>
+        </div>
+        
+        <div class="col col-100" ng-if="state==='Loading'" style="text-align:center;margin-top:80px">
+            <h1><i class="ion-ios7-reloading"></i></h1>
+        </div>
+        <div ng-if="state!=='Loading'" class="card" style="border-radius: 10px;">
+            <label class="item item-input">
+                <span class="input-label">Brugernavn</span>
+                <input type="text" ng-model="credentials.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="credentials.password">
+            </label>
+        </div>
+        <div ng-if="state!=='Loading'" class="padding">
+            <button class="button button-block button-positive" ng-click="login()" ng-disabled="state!=='Login'">
+                <i ng-if="state==='LoggingIn'" class="ion-ios7-reloading"></i>
+                <span ng-if="state==='Login'">Log Ind</span>
+            </button>
+            <p class="text-center">
+                <a href="#/forgot-password">Forgot password</a>
+            </p>
+        </div>
+    </ion-content>
+</ion-view>

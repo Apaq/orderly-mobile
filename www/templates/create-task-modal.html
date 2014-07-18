@@ -1,0 +1,50 @@
+<div class="modal">
+    <ion-header-bar class="bar bar-header bar-stable">
+        <h1 class="title">Ny opgave</h1>
+        <button class="button button-clear button-primary" ng-click="closeModal()">Annuller</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Starttidspunkt</span>
+                <input type="time" ng-model="taskForm.startTime">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Sluttidspunkt</span>
+                <input type="time" ng-model="taskForm.endTime">
+            </label>
+            <div class="item item-divider">Type</div>
+            
+
+            <label class="item item-radio">
+                <input type="radio" ng-model="taskForm.type" value="Witnessing">
+                <div class="item-content">
+                    Forkyndelse
+                </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+
+            <div class="item item-divider">Tildelt</div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Leder
+                </div>
+                <select ng-model="taskForm.conductor" ng-options="person.firstName+' '+person.lastName for person in persons">
+                    <option value="">Ingen</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Assistent
+                </div>
+                <select ng-model="taskForm.assistant" ng-options="person.firstName+' '+person.lastName for person in persons">
+                    <option value="">Ingen</option>
+                </select>
+            </label>
+            <div class="padding">
+                <button class="button button-full button-positive" ng-click="createTask()">Opret</button>
+            </div>
+        </div>
+        {{taskForm}}
+    </ion-content>
+</div>

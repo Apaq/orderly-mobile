@@ -1,0 +1,26 @@
+<ion-view title="{{currentRelation.domain.name}}" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios7-plus-empty" ng-click="openModal()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="background-stable">
+        
+        <div class="list">
+            <div class="item item-divider" ng-repeat-start="date in dates">{{date | date:'EEE. d. MMMM'}}</div>
+            <a class="item item-timestamp-left" ng-repeat-end ng-repeat="event in events | sameDate:{varName:'startTime', date: date}" href="#/menu/events/{{event.id}}">
+                <span class="timestamp">
+                    {{event.startTime | date:'HH:mm'}}<br>
+                    {{event.endTime | date:'HH:mm'}}
+                </span>
+                {{'EVENT_TYPES.' + event.type | translate}}
+            </a>
+
+        </div>
+
+
+    </ion-content>
+</ion-view>

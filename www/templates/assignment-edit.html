@@ -1,0 +1,49 @@
+<ion-view title="Opgave">
+    <!--ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios7-upload-outline"></button>
+    </ion-nav-buttons-->
+    <ion-content class="background-stable">
+        <div class="list">
+            <div class="item">
+                <h2>{{'EVENT_TYPES.' + task.agenda.event.type | translate}}</h2>
+                <p>{{task.agenda.title}}</p>
+            </div>
+            <div class="item item-text-wrap" ng-if="task.meta.Title">
+                <h3>Tema</h3>
+                <p class="item-note">{{task.meta.Title}}</p>
+            </div>
+            <div class="item">
+                Opgavetype
+                <span class="item-note">{{'TASK_TYPES.' + task.type | translate}}</span>
+            </div>
+            <div class="item">
+                Dato
+                <span class="item-note">{{task.startTime | date:'shortDate'}}</span>
+            </div>
+            <div class="item">
+                Tidspunkt
+                <span class="item-note">{{task.startTime | date:'shortTime'}} - {{task.endTime | date:'shortTime'}}</span>
+            </div>
+
+            <div class="item" ng-if="task.meta.Curriculum">
+                Kilde
+                <span class="item-note">{{task.meta.Curriculum}}</span>
+            </div>
+
+        </div>
+        
+        <div class="list" ng-if="task.assignments.length >= 1">
+            <div class="item item-divider item-divider-positive">
+                Medvirkende
+            </div>
+            <a class="item" ng-repeat="assignment in task.assignments" href="#/menu/persons/{{assignment.assignee.id}}">
+                <span ng-if="!assignment.assignee.type">{{assignment.assignee.firstName}} {{assignment.assignee.lastName}}</span>
+                <span ng-if="assignment.assignee.type">{{assignment.assignee.name}}</span>
+                
+                <span class="item-note">{{'ASSIGNMENT_TYPES.' + assignment.type | translate}}</span>
+            </a>
+            
+        </div>
+
+    </ion-content>
+</ion-view>

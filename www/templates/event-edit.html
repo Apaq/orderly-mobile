@@ -1,0 +1,65 @@
+<ion-view title="{{'EVENT_TYPES.' + event.type | translate}}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios7-plus-empty" ng-click="addAgenda()"></button>
+    </ion-nav-buttons>
+    <ion-content class="background-stable">
+        <div class="list">
+            <div class="item item-divider item-divider-positive">
+                Generelt
+            </div>
+            <a class="item">
+                Dato
+                <span class="item-note">{{event.startTime | date:'d/M-yyyy'}}</span>
+            </a>
+            <a class="item">
+                Tidspunkt
+                <span class="item-note">{{event.startTime | date:'HH:mm'}} - {{event.endTime | date:'HH:mm'}}</span>
+            </a>
+            <a class="item" ng-if="event.type==='CongregationMeeting'">
+                Mikser
+                <span class="item-note"></span>
+            </a>
+            <a class="item" ng-if="event.type==='CongregationMeeting'">
+                Platform
+                <span class="item-note"></span>
+            </a>
+            <a class="item" ng-if="event.type==='CongregationMeeting'">
+                Rengøring
+                <span class="item-note"></span>
+            </a>
+
+
+        </div>
+
+
+
+        <div class="list" ng-repeat="agenda in event.agendas">
+            <div class="item item-divider item-divider-positive">
+                <span ng-if="!agenda.title">Agenda {{$index}}</span>
+                <span ng-if="agenda.title">{{agenda.title}}</span>
+            </div>
+            <a  href="#/menu/events/{{event.id}}/agendas/{{agenda.id}}/tasks/{{task.id}}" class="item item-timestamp-left" ng-repeat="task in agenda.tasks | orderBy : 'startTime'">
+                <span class="timestamp">
+                    {{task.startTime | date:'HH:mm'}}<br>
+                    {{task.endTime | date:'HH:mm'}}
+                </span>
+                {{'TASK_TYPES.' + task.type | translate}}
+                <!--span class="item-note"-->
+                <p>
+                    <span ng-if="task.assignments.length === 1">{{task.assignments[0].assignee.firstName}} {{task.assignments[0].assignee.lastName}}</span>
+                    <span ng-if="task.assignments.length === 2">{{task.assignments[0].assignee.firstName}} {{task.assignments[0].assignee.lastName}}, {{task.assignments[1].assignee.firstName}} {{task.assignments[1].assignee.lastName}}</span>
+                    <span ng-if="task.assignments.length > 2">{{task.assignments.length}} forkyndere</span>
+                </p>
+            </a>
+            
+            <a class="item item-icon-left item-icon-right" ng-click="addTask(agenda)">
+                <i class="icon ion-ios7-circle-outline"></i>
+                Tilføj opgave
+                <i class="icon ion-ios7-plus-empty"></i>
+              </a>
+
+
+        </div>
+
+    </ion-content>
+</ion-view>
