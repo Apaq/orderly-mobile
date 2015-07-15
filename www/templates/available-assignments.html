@@ -1,0 +1,36 @@
+<ion-view title="Ledige opgaver" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-divider item ng-binding">man. 11. august</ion-item>
+            <ion-item class="item item-timestamp-left item-icon-right">
+                <span class="timestamp ng-binding">
+                    07:30<br>
+                    09:30
+                </span>
+                Forkyndelse
+                <i class="icon ion-ios7-plus-outline"></i>
+            </ion-item>
+            
+        </ion-list>
+
+        <!--div class="list">
+            <div ng-if="assignments.length === 0 && state!=='Loading'" class="item"><i>Ingen opgaver registreret</i></div>
+            <div class="item item-divider" ng-repeat-start="date in dates">{{date | date:'EEE. d. MMMM'}}</div>
+            <a class="item item-timestamp-left" ng-repeat-end ng-repeat="assignment in assignments | sameDate:{varName:'startTime', date: date} | orderBy: 'startTime'" href="#/menu/assignments/{{assignment.id}}">
+                <span class="timestamp">
+                    {{assignment.startTime | date:'HH:mm'}}<br>
+                    {{assignment.endTime | date:'HH:mm'}}
+                </span>
+                {{'TASK_TYPES.' + assignment.type | translate}}
+            </a>
+
+        </div-->
+
+
+
+    </ion-content>
+</ion-view>

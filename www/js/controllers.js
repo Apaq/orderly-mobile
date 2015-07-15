@@ -104,6 +104,13 @@ function AssignmentEditCtrl($scope, $stateParams, AssignmentSvc) {
 
 
 /*********************************************************************************************
+ * AVAILABLE ASSIGNMENT CONTROLLER                                                           *
+ *********************************************************************************************/
+function AvailableAssignmentsCtrl($scope) {
+    
+}
+
+/*********************************************************************************************
  * EVENTS CONTROLLER                                                                         *
  *********************************************************************************************/
 function EventsCtrl($scope, $ionicModal, EventSvc, RelationSvc) {
@@ -123,6 +130,7 @@ function EventsCtrl($scope, $ionicModal, EventSvc, RelationSvc) {
         };
 
         $scope.create = function () {
+            $scope.showSpinner();
             var now = new Date();
             var offset = now.getTimezoneOffset();
 
@@ -157,6 +165,20 @@ function EventsCtrl($scope, $ionicModal, EventSvc, RelationSvc) {
         $scope.modal.hide();
     };
 
+    $scope.availableAssignments = function(event) {
+        var count = 0;
+        if(event.type === "PublicWitnessing") {
+            angular.forEach(event.agendas, function(agenda) {
+                angular.forEach(agenda.tasks, function(task) {
+                    if(task.assignments.length < 2) {
+                        count += (2 -task.assignments);
+                    }
+                });
+            });
+        }
+        return count;
+    }
+    
     $scope.load = function () {
         $scope.showSpinner();
         $scope.relations = RelationSvc.query();
@@ -188,7 +210,8 @@ function EventsCtrl($scope, $ionicModal, EventSvc, RelationSvc) {
     $scope.$watch('currentRelation', function () {
         if ($scope.currentRelation !== null) {
             $scope.events = EventSvc.query({
-                domain: $scope.currentRelation.domain.id
+                domain: $scope.currentRelation.domain.id,
+                mode: "full"
             });
         } else {
             $scope.events = null;
@@ -228,12 +251,15 @@ function EventEditCtrl($scope, $stateParams, EventSvc, PersonSvc, $ionicPopup, $
     $scope.addAgenda = function () {
         $ionicPopup.prompt({
             title: 'Tilføj Agenda',
-            template: 'Indtast titel på ny Agenda',
+            //template: 'Indtast titel på ny Agenda',
             inputType: 'text',
             inputPlaceholder: 'Titel'
         }).then(function (title) {
             if (title) {
                 var temp = angular.copy($scope.event);
+                if(!temp.agendas) {
+                    temp.agendas=[];
+                }
                 temp.agendas.push({
                     title: title
                 });
@@ -457,7 +483,7 @@ function ControllersBootstrap($rootScope, $ionicLoading) {
         });
     };
     $rootScope.hideSpinner = function () {
-        $rootScope.spinner.hide();
+        $ionicLoading.hide();
     };
 }
 
@@ -468,6 +494,7 @@ angular.module('agendas.controllers', [])
     .controller('LoginCtrl', LoginCtrl)
     .controller('AssignmentsCtrl', AssigmentsCtrl)
     .controller('AssignmentEditCtrl', AssignmentEditCtrl)
+    .controller('AvailableAssignmentsCtrl', AvailableAssignmentsCtrl)
     .controller('EventsCtrl', EventsCtrl)
     .controller('EventEditCtrl', EventEditCtrl)
     .controller('TaskEditCtrl', TaskEditCtrl)

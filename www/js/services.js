@@ -2,7 +2,7 @@
 function AgendasProvider() {
     'use strict';
     /* SERVICEURL START */
-    var serviceUrl = "http://192.168.87.114:8080/";
+    var serviceUrl = "http://192.168.87.114:8084/";
     /* SERVICEURL END */
 
     this.setServiceUrl = function (url) {
@@ -55,7 +55,7 @@ function PersonSvc($resource, agendas) {
 }
 
 function AssignmentSvc($resource, agendas) {
-    return $resource(agendas.getServiceUrl() + 'persons/:pid/assignments/:id');
+    return $resource(agendas.getServiceUrl() + 'persons/:pid/tasks/:id');
 }
 
 function EventSvc($resource, agendas) {
@@ -89,6 +89,7 @@ function LoginSvc($q, localStorageService, $http, $rootScope, agendas, $log) {
             if(token) {
                 authHeader = 'Basic ' + token;
                 return $http.get(agendas.getServiceUrl() + "persons/current", {headers: {'Authorization': authHeader}}).then(function(response) {
+                    alert(response.status + "/" + response.statusText);
                     if(response.status !== 200) {
                         var reason = response.data;
                         if(!reason || '' === reason) {

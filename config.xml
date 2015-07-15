@@ -8,7 +8,8 @@
       Orderly Team
     </author>
     <content src="index.html" />
-    <access origin="*" />
+    <access origin="localhost:8084" />
+    <access origin="orderlyservice-apaq.rhcloud.com" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

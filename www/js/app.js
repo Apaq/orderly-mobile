@@ -61,6 +61,10 @@ function ApplicationConfig($stateProvider, $urlRouterProvider, $httpProvider, ag
                     $location.path('/login');
                     return $q.reject("Not authorized.");
                 }
+                if (rejection.status === 0) {
+                    $location.path('/login');
+                    return $q.reject("Cannot contact server.");
+                }
                 return rejection;
             }
         };
@@ -98,6 +102,16 @@ function ApplicationConfig($stateProvider, $urlRouterProvider, $httpProvider, ag
                     'menuContent@menu': {
                         templateUrl: 'templates/assignment-edit.html',
                         controller: 'AssignmentEditCtrl'
+                    }
+                }
+            })
+    
+            .state('menu.available-assignments', {
+                url: '/available-assignments',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/available-assignments.html',
+                        controller: 'AvailableAssignmentsCtrl'
                     }
                 }
             })
@@ -184,7 +198,7 @@ function ApplicationBoot($http, agendas) {
         agendas.setServiceUrl(data.serviceUrl);
     });
 }
-ApplicationBoot$$inject = ['$http', 'agendas'];
+ApplicationBoot.$$inject = ['$http', 'agendas'];
 
 
 angular.module('agendas', ['ionic', 'agendas.services', 'agendas.controllers', 'pascalprecht.translate'])

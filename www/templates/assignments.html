@@ -5,7 +5,8 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
-            <ion-item ng-if="assignments.length===0 && state!=='Loading'"><i>Ingen opgaver</i></ion-item>
+            <ion-item ng-if="assignments.length===0 && state!=='Loading'"><i>Ingen opgaver</i>
+            </ion-item>
             <ion-item ng-repeat-start="date in dates" class="item-divider">{{date | date:'EEE. d. MMMM'}}</ion-item>
             <ion-item ng-repeat-end ng-repeat="assignment in assignments | sameDate:{varName:'startTime', date: date} | orderBy: 'startTime'" class="item item-timestamp-left">
                 <span class="timestamp">
@@ -32,4 +33,4 @@
 
 
     </ion-content>
-</ion-view>
+</ion-view> 

@@ -4,6 +4,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios7-people-outline"></button>
         <button class="button button-icon button-clear ion-ios7-plus-empty" ng-click="openModal()">
         </button>
     </ion-nav-buttons>
@@ -17,6 +18,7 @@
                     {{event.endTime | date:'HH:mm'}}
                 </span>
                 {{'EVENT_TYPES.' + event.type | translate}}
+                <p ng-if="availableAssignments(event) > 0">{{availableAssignments(event)}} ledige opgaver</p>
             </a>
 
         </div>
